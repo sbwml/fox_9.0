@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+<!-- OrangeFox Recovery Manifest -->
+<!-- Pie | 2019 | R10 -->
+
+    <remote name="TeamWin"
+            fetch="https://github.com/TeamWin"
+            review="https://gerrit.twrp.me" />
+
+    <remote name="fox" 
+            fetch="https://gitlab.com/OrangeFox/"
+            revision="refs/tags/R9.0" />
+
+<!-- Remove unused projects -->
+    <remove-project name="platform/bootable/recovery"/>
+    <remove-project name="android_external_f2fs-tools"/>
+
+<!-- Add forked projects -->
+    <project path="bootable/recovery" name="Recovery" remote="fox" revision="master"/>
+    <project name="Vendor" path="vendor/recovery" remote="fox" />
+    <project name="Build" path="build/make" remote="fox" >
+        <copyfile src="core/root.mk" dest="Makefile" />
+        <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
+        <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
+        <linkfile src="core" dest="build/core" />
+        <linkfile src="envsetup.sh" dest="build/envsetup.sh" />
+        <linkfile src="target" dest="build/target" />
+        <linkfile src="tools" dest="build/tools" />
+    </project>
+    <project name="f2fs-tools" path="external/f2fs-tools" remote="fox" />
+
+<!-- Include external Magisk repo for repack binaries -->
+    <project path="external/magisk-prebuilt" name="external_magisk-prebuilt" remote="TeamWin" revision="master" />
+</manifest>
