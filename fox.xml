@@ -19,7 +19,7 @@
 <!-- Add forked projects -->
     <project path="bootable/recovery" name="Recovery" remote="fox" revision="master"/>
     <project name="Vendor" path="vendor/recovery" remote="fox" />
-    <project name="Build" path="build/make" remote="fox" >
+    <project name="Build" path="build/make" revision="fox_9.0" remote="fox" >
         <copyfile src="core/root.mk" dest="Makefile" />
         <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
         <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
